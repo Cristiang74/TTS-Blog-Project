@@ -1,67 +1,70 @@
 package com.tts.ttsblog.BlogPost;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class BlogPost {
-// Properties of the blog post
+    // Properties of the blog post
 
-private Long id;
-private String title;
-private String author;
-private String blogEntry;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String title;
+    private String author;
+    private String blogEntry;
 
+    // default constructor
+    public BlogPost() {
 
-// default constructor
-public BlogPost(){ 
+    }
 
-}
-public BlogPost(String title, String author, String blogEntry){ 
-this.title = title;
-this.author = author;
-this.blogEntry = blogEntry;
-}
-//instatiate contructor in controller with   BlogPost blogpost = new BlogPost();
-public Long getId() {
-    return id;
-}
+    public BlogPost(String title, String author, String blogEntry) {
+        this.title = title;
+        this.author = author;
+        this.blogEntry = blogEntry;
+    }
 
-public void setId(Long id) {
-    this.id = id;
-}
+    // instatiate contructor in controller with BlogPost blogpost = new BlogPost();
+    public Long getId() {
+        return id;
+    }
 
-public String getTitle() {
-    return title;
-}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-public void setTitle(String title) {
-    this.title = title;
-}
+    public String getTitle() {
+        return title;
+    }
 
-public String getAuthor() {
-    return author;
-}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-public void setAuthor(String author) {
-    this.author = author;
-}
+    public String getAuthor() {
+        return author;
+    }
 
-public String getBlogEntry() {
-    return blogEntry;
-}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-public void setBlogEntry(String blogEntry) {
-    this.blogEntry = blogEntry;
-}
+    public String getBlogEntry() {
+        return blogEntry;
+    }
 
-@Override
-public String toString() {
-    return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", title=" + title + "]";
-}
+    public void setBlogEntry(String blogEntry) {
+        this.blogEntry = blogEntry;
+    }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", title=" + title + "]";
+    }
 
 }
 
-
-//instatiate contructor in controller with   BlogPost blogpost = new BlogPost();
+// instatiate contructor in controller with BlogPost blogpost = new BlogPost();
