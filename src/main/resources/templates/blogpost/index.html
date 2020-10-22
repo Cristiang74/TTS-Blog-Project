@@ -11,30 +11,34 @@
 
 <body>
     <div class="container">
-    <h1>Welcome to our Blog Post Site</h1>
-    <h3>Check out our blogs!</h3>
+        <h1 class="card bg-secondary text-white text-center">Welcome to our Blog Post Site</h1>
+        <h3>Check out our blogs!</h3>
 
-    <p>Please use the form below to submit a Blog Post:</p>
-    <form action="#" th:action="@{/}" th:object="${blogPost}" method="post">
-        <table>
-            <tr>
-                <td>Title</td>
-                <td><input type="text" th:field="*{title}"></td>
-            </tr>
-            <tr>
-                <td>Author</td>
-                <td><input type="text" th:field="*{author}"></td>
-            </tr>
-            <tr>
-                <td>Blog Entry</td>
-                <td><input type="text" th:field="*{blogEntry}"></td>
-            </tr>
-            <tr>
-                <td><button type="Submit">Submit Your Post</button></td>
-            </tr>
-        </table>
-    </form>
-</div>
+        
+
+
+
+        <div class="row">
+            <div class="col-md-12" th:each="blog:${posts}">
+                <div class="card" style="width: 18rem;">
+                    <span class="border border-primary rounded-lg">
+                        <div class="card-body bg-info text-white rounded-lg">
+
+                            <div class="card-title mb-2" th:text="${blog.title}"></div>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${blog.author}"></h6>
+                            <p class="card-text" th:text="${blog.blogEntry}"></p>
+
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <a th:href="@{/blogpost/new}">
+            <button class="btn btn-primary">Create a new Blog Post</button>
+        </a>
+    </div>
+
     <!-- this is my javascript -->
     <div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
