@@ -10,10 +10,10 @@
 </head>
 
 <body>
-<div class="container"></div>
-    <p>Please use the form below to submit a Blog Post:</p>
-    <form action="#" th:action="@{/blogpost}" th:object="${blogPost}" method="post">
-        <!-- <table>
+    <div class="container">
+        <h1>Create a New Blog Post Below </h1>
+        <form action="#" th:action="@{/blogpost}" th:object="${blogPost}" method="post">
+            <!-- <table>
             <tr>
                 <td>Title</td>
                 <td><input type="text" th:field="*{title}"></td>
@@ -36,22 +36,25 @@
 
 
 
-        <div class="form-group">
-            <label for="Title">Title</label>
-            <input th:field="*{title}" type="text" class="form-control" id="exampleInputTitle" aria-describedby="blogTitle">
-        </div>
-        <div class="form-group">
-            <label for="Author">Author</label>
-            <input th:field="*{author}" type="text" class="form-control" id="exampleInputAuthor" aria-describedby="blogAuthor">
-        </div>
-        <div class="form-group">
-            <label for="BlogEntry">Blog Entry</label>
-            <input th:field="*{blogEntry}" type="text" class="form-control" id="exampleInputBlogEntry" aria-describedby="blogEntry">
-        </div>
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input th:field="*{title}" type="text" class="form-control" id="exampleInputTitle"
+                    aria-describedby="blogTitle">
+            </div>
+            <div class="form-group">
+                <label for="Author">Author</label>
+                <input th:field="*{author}" type="text" class="form-control" id="exampleInputAuthor"
+                    aria-describedby="blogAuthor">
+            </div>
+            <div class="form-group">
+                <label for="BlogEntry">Blog Entry</label>
+                <input th:field="*{blogEntry}" type="text" class="form-control" id="exampleInputBlogEntry"
+                    aria-describedby="blogEntry">
+            </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
     <!-- this is my javascript -->
     <div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
