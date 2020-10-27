@@ -9,14 +9,14 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <link rel="stylesheet" href="CSS/standard.css" />
-    </head>
+</head>
 
 <body>
     <div class="container">
         <h1 class="card bg-secondary text-white text-center">Welcome to our Blog Post Site</h1>
         <h3>Check out our blogs!</h3>
 
-        
+
 
 
 
@@ -31,9 +31,18 @@
                             <p class="card-text" th:text="${blog.blogEntry}"></p>
 
                         </div>
+                        
+                        <div class = "card-footer">
+                            <form action="#" th:action = "@{'/blogpost/{id}' (id=${blog.id})}" th:method="delete"></form>
+                            <div class="form-group">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button type="submit" class="btn btn-danger btn-block" th:text="Delete">Delete</button>
+                            </form>
+                            </div>
+                        </div>
                     </span>
                 </div>
-                
+
             </div>
         </div>
 
