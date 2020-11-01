@@ -60,6 +60,8 @@ public class BlogPost {
         this.blogEntry = blogEntry;
     }
 
+    
+
     @Override
     public String toString() {
         return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", title=" + title + "]";
