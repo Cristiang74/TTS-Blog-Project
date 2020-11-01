@@ -55,13 +55,13 @@ public class BlogPostController {
 
     }
 
-    @RequestMapping(value = "/blogpost/{id}", method = RequestMethod.DELETE)
-    public String deletePostWithId(@PathVariable Long id, BlogPost blogPost){
-        
+    @RequestMapping(value = "/blogpost/{id}")
+public String deletePostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
 
-        blogPostRepository.deleteById(id);
-        return "/blogpost/index";
-    }
+    blogPostRepository.deleteById(id);
+    return "redirect:/";
+
+}
 
 
 }
