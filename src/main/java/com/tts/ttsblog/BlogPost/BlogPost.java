@@ -15,6 +15,7 @@ public class BlogPost {
     private String title;
     private String author;
     private String blogEntry;
+    private String tag;
 
     // default constructor
     public BlogPost() {
@@ -60,12 +61,20 @@ public class BlogPost {
         this.blogEntry = blogEntry;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
     
 
     @Override
     public String toString() {
         return "BlogPost [author=" + author + ", blogEntry=" + blogEntry + ", title=" + title + "]";
     }
+
 
 }
 
