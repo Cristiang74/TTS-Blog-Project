@@ -2,6 +2,7 @@ package com.tts.ttsblog.BlogPost;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,18 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BlogPostController {
 
-
     @Autowired
     private BlogPostRepository blogPostRepository;
 
     private List<BlogPost> posts = new ArrayList<>();
 
-    //localhost:8080
-    //Handle get request to forward slash
+    // localhost:8080
+    // Handle get request to forward slash
     @GetMapping(value = "/")
-    public String index(BlogPost blogPost, Model model){
+    public String index(BlogPost blogPost, Model model) {
         posts.removeAll(posts);
-        
+
         for (BlogPost postFromDB : blogPostRepository.findAll()) {
             posts.add(postFromDB);
         }
@@ -34,15 +34,14 @@ public class BlogPostController {
         return "blogpost/index";
     }
 
-    @GetMapping(value="/blogpost/new")
-    public String newBlog(BlogPost blogPost){
+    @GetMapping(value = "/blogpost/new")
+    public String newBlog(BlogPost blogPost) {
         return "blogpost/new";
     }
 
     @PostMapping(value = "/blogpost")
-    public String addNewBlogPost(BlogPost blogPost, Model model){
+    public String addNewBlogPost(BlogPost blogPost, Model model) {
 
-       
         System.out.println(posts);
 
         blogPostRepository.save(blogPost);
@@ -54,13 +53,50 @@ public class BlogPostController {
 
     }
 
-    @RequestMapping(value = "/blogpost/{id}")
-public String deletePostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
+    @PostMapping (value = "/blogpost/update/{id}")
+    public String updateExistingPost(@PathVariable Long id, BlogPost blogPost, Model model) {
+        Optional<BlogPost> post = blogPostRepository.findById(id);
+        if(post.isPresent()) {
 
-    blogPostRepository.deleteById(id);
-    return "redirect:/";
+            BlogPost actualPost = post.get();
+            actualPost.setTitle(blogPost.getTitle());
+            actualPost.setAuthor(blogPost.getAuthor());
+            actualPost.setBlogEntry(blogPost.getBlogEntry());
 
-}
+            blogPostRepository.save(actualPost);
 
+            model.addAttribute("blogPost, actualPost");
+       }
+        else {
+            return "Error";
+        }
+        return "blogpost/result";
+    }
 
+    @RequestMapping(value = "/blogpost/delete/{id}")
+    public String deletePostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
+
+        blogPostRepository.deleteById(id);
+        return "blogpost/delete";
+
+    }
+
+    @RequestMapping(value = "/blogpost/edit/{id}")
+    public String editPostWithId(@PathVariable Long id, BlogPost blogPost, Model model) {
+
+        Optional<BlogPost> editPost = blogPostRepository.findById(id);
+
+        BlogPost result;
+
+        if (editPost.isPresent()) {
+
+            result = editPost.get();
+
+            model.addAttribute("blogPost", result);
+        } else {
+            return "Error";
+        }
+
+        return "blogpost/edit";
+    }
 }
