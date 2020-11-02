@@ -55,6 +55,12 @@
                     aria-describedby="blogEntry">
             </div>
 
+            <div class="form-group">
+                <label for="Tags">Enter tags separated by commas</label>
+                <input th:field="*{tag}" type="text" class="form-control" id="exampleInputBlogEntry"
+                    aria-describedby="tags">
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
